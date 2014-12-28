@@ -3,7 +3,7 @@ MAINTAINER Boris Mikhaylov kaguxmail@gmail.com
 
 RUN apt-get -y update
 
-RUN apt-get install -y python-yaml python-jinja2 git python-pip sshpass curl
+RUN apt-get install -y python-yaml python-jinja2 git python-pip sshpass curl apt-transport-https
 RUN pip install docker-py
 
 # install ansible
