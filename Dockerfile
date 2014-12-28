@@ -1,4 +1,4 @@
-FROM jpetazzo/dind
+FROM ubuntu:14.04
 MAINTAINER Boris Mikhaylov kaguxmail@gmail.com
 
 RUN apt-get -y update
@@ -14,8 +14,11 @@ ENV PATH /ansible/bin:/sbin:/usr/sbin:/usr/bin:/bin:/usr/local/bin
 ENV ANSIBLE_LIBRARY /ansible/library
 ENV PYTHONPATH /ansible/lib:$PYTHON_PATH
 
-# small fix to wrapdocker
-RUN sed -i 's/exec bash//g' /usr/local/bin/wrapdocker
+# Install Docker from Docker Inc. repositories.
+RUN echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list \
+  && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9 \
+  && apt-get update -qq \
+  && apt-get install -qqy lxc-docker
 
 # agent forwarding in git
 RUN echo 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $*' > /opt/git_ssh
