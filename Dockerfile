@@ -9,7 +9,7 @@ RUN pip install docker-py
 # install ansible
 ENV ANSIBLE_VER master
 RUN git clone http://github.com/ansible/ansible.git /ansible
-RUN cd /ansible && git checkout v$ANSIBLE_VER && git submodule update --init --recursive
+RUN cd /ansible && git checkout $ANSIBLE_VER && git submodule update --init --recursive
 ENV PATH /ansible/bin:/sbin:/usr/sbin:/usr/bin:/bin:/usr/local/bin
 ENV ANSIBLE_LIBRARY /ansible/library
 ENV PYTHONPATH /ansible/lib:$PYTHON_PATH
