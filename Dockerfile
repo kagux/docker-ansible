@@ -7,7 +7,7 @@ RUN apt-get install -y python-yaml python-jinja2 git python-pip sshpass curl apt
 RUN pip install docker-py
 
 # install ansible
-ENV ANSIBLE_VER 1.8.2
+ENV ANSIBLE_VER v1.8.2
 RUN git clone http://github.com/ansible/ansible.git /ansible
 RUN cd /ansible && git checkout $ANSIBLE_VER && git submodule update --init --recursive
 ENV PATH /ansible/bin:/sbin:/usr/sbin:/usr/bin:/bin:/usr/local/bin
